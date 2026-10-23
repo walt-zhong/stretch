@@ -52,6 +52,7 @@ archTriplets.each { arch, target ->
     // Build with cargo
     tasks.create(name: "cargo-build-${arch}", type: Exec, description: "Building core for ${arch}") {
         workingDir rustBasePath
+        // 64-bit libstretch.so is linked for 16 KB pages in src/main/rust/build.rs.
         commandLine 'cargo', 'build', "--target=${target}", '--release'
     }
 
